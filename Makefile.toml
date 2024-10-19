@@ -1,0 +1,5 @@
+[tasks.run]
+script = [
+    "cd backend && cargo run &",
+    "cd frontend && trunk serve"
+]
