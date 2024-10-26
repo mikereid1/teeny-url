@@ -1,7 +1,7 @@
 use gloo::net::http::Request;
-use yew::{function_component, html, Callback, Html, InputEvent, TargetCast};
-use yew::platform::spawn_local;
 use serde::{Deserialize, Serialize};
+use yew::platform::spawn_local;
+use yew::{function_component, html, Callback, Html, InputEvent, TargetCast};
 
 #[function_component]
 fn App() -> Html {
@@ -18,7 +18,7 @@ fn Frame() -> Html {
     let long_url_listener = {
         let long_url_state = long_url_state.clone();
         Callback::from(move |e: InputEvent| {
-            if let Some(input) =  e.target_dyn_into::<web_sys::HtmlInputElement>() {
+            if let Some(input) = e.target_dyn_into::<web_sys::HtmlInputElement>() {
                 long_url_state.set(input.value())
             }
         })
@@ -44,13 +44,12 @@ fn Frame() -> Html {
                 let response = Request::post("http://127.0.0.1:8080/api/v1/shorten")
                     .json(&payload)
                     .unwrap()
-                    .send().await;
+                    .send()
+                    .await;
 
                 match response {
                     Ok(resp) => {
-                        let short_url: ResponseContainer = resp.json()
-                            .await
-                            .unwrap();
+                        let short_url: ResponseContainer = resp.json().await.unwrap();
 
                         short_url_state.set(short_url.data.short_url);
                     }

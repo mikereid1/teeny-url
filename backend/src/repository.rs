@@ -1,8 +1,8 @@
 use chrono::Utc;
 use mongodb::bson::doc;
 use mongodb::bson::oid::ObjectId;
-use mongodb::{Collection, IndexModel};
 use mongodb::options::IndexOptions;
+use mongodb::{Collection, IndexModel};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
